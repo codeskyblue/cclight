@@ -75,7 +75,7 @@ claude --debug
 确保项目结构符合规范：
 
 ```
-esp32-claude-status/
+claude-status-indicator/
 ├── .claude-plugin/
 │   ├── plugin.json          # 插件清单
 │   └── marketplace.json      # Marketplace 配置
