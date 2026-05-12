@@ -1,5 +1,5 @@
 {
-  "name": "cclight-status-indicator",
+  "name": "cclight",
   "version": "1.0.0",
   "description": "ESP32 状态指示器 - 通过 LED 灯光显示 Claude Code 的工作状态",
   "author": {

@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "cclight-status-indicator",
+      "name": "cclight",
       "source": {
         "source": "github",
         "repo": "codeskyblue/cclight"

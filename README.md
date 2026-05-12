@@ -11,7 +11,7 @@
 /plugin marketplace add codeskyblue/cclight
 
 # 2. 安装插件
-/plugin install cclight-status-indicator@cclight-marketplace
+/plugin install cclight@cclight-marketplace
 ```
 
 > 💡 **开发调试？** 查看 [DEVELOP.md](DEVELOP.md) 了解本地开发和调试方法。
@@ -24,7 +24,7 @@
 /plugin list
 ```
 
-应该能看到 `cclight-status-indicator` 已启用。
+应该能看到 `cclight` 已启用。
 
 # 参考文档
 

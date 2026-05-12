@@ -17,7 +17,7 @@
 ### 2. 安装插件
 
 ```bash
-/plugin install cclight-status-indicator@cclight-marketplace
+/plugin install cclight@cclight-marketplace
 ```
 
 ### 3. 验证安装
@@ -26,7 +26,7 @@
 /plugin list
 ```
 
-应该能看到 `cclight-status-indicator` 已启用。
+应该能看到 `cclight` 已启用。
 
 ## 开发调试流程
 
@@ -41,7 +41,7 @@
 ### 查看插件详情
 
 ```bash
-/plugin details cclight-status-indicator@cclight-marketplace
+/plugin details cclight@cclight-marketplace
 ```
 
 这会显示插件的所有组件（skills、agents、hooks 等）。
@@ -129,8 +129,8 @@ cclight/
 1. 运行 `/reload-plugins` 重新加载
 2. 如果还不行，尝试卸载后重新安装：
    ```bash
-   /plugin uninstall cclight-status-indicator@cclight-marketplace
-   /plugin install cclight-status-indicator@cclight-marketplace
+   /plugin uninstall cclight@cclight-marketplace
+   /plugin install cclight@cclight-marketplace
    ```
 
 ### Hook 未触发
