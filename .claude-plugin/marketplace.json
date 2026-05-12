@@ -25,8 +25,8 @@
         "visual-feedback",
         "productivity"
       ],
-      "homepage": "https://github.com/codeskyblue/claude-status-indicator",
-      "repository": "https://github.com/codeskyblue/claude-status-indicator",
+      "homepage": "https://github.com/codeskyblue/esp32-claude-status",
+      "repository": "https://github.com/codeskyblue/esp32-claude-status",
       "category": "productivity"
     }
   ]

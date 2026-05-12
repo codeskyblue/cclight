@@ -56,7 +56,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"${CLAUDE_PLUGIN_ROOT}\"/cclight.py input"
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}\"/cclight.py working"
           }
         ]
       }
@@ -87,6 +87,25 @@
           {
             "type": "command",
             "command": "python \"${CLAUDE_PLUGIN_ROOT}\"/cclight.py idle"
+          }
+        ]
+      },
+      {
+        "matcher": "prompt_success|prompt_submit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}\"/cclight.py working"
+          }
+        ]
+      }
+    ],
+    "ElicitationResult": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}\"/cclight.py working"
           }
         ]
       }
