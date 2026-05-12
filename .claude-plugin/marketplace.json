@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "cclight-marketplace",
+  "description": "ESP32 硬件状态指示器插件市场",
+  "owner": {
+    "name": "codeskyblue",
+    "url": "https://github.com/codeskyblue"
+  },
+  "plugins": [
+    {
+      "name": "cclight-status-indicator",
+      "source": "./",
+      "description": "通过 ESP32 LED 灯光显示 Claude Code 的工作状态",
+      "version": "1.0.0",
+      "author": {
+        "name": "codeskyblue",
+        "url": "https://github.com/codeskyblue"
+      },
+      "license": "MIT",
+      "keywords": [
+        "hardware",
+        "esp32",
+        "status-indicator",
+        "led",
+        "visual-feedback",
+        "productivity"
+      ],
+      "homepage": "https://github.com/codeskyblue/esp32-claude-status",
+      "repository": "https://github.com/codeskyblue/esp32-claude-status",
+      "category": "productivity"
+    }
+  ]
+}

@@ -1,45 +1,33 @@
-# Ref
+# CCLight Status Indicator Plugin
 
-- https://github.com/bobek-balinek/claude-lamp
-- [Hooks系统完整指南](https://github.com/KimYx0207/AI-Coding-Guide-Zh/blob/main/docs/claude-code/05-Hooks%E7%B3%BB%E7%BB%9F%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.md)
+> 🚨 通过 ESP32 LED 灯光显示 Claude Code 的工作状态
 
-# 注册Hooks
+# 安装方法
 
-~/.claude/settings.json
+## 从 GitHub 安装
 
+```bash
+# 1. 添加 GitHub marketplace
+/plugin marketplace add codeskyblue/esp32-claude-status
+
+# 2. 安装插件
+/plugin install cclight-status-indicator@cclight-marketplace
 ```
-{
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/path/to/hook_wait.py"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/path/to/hook_running.py"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/path/to/hook_done.py"
-          }
-        ]
-      }
-    ]
-  }
-}
+
+> 💡 **开发调试？** 查看 [DEVELOP.md](DEVELOP.md) 了解本地开发和调试方法。
+
+## 验证安装
+
+安装成功后，在 Claude Code 中运行：
+
+```bash
+/plugin list
 ```
+
+应该能看到 `cclight-status-indicator` 已启用。
+
+# 参考文档
+
+- 创建marketplace: https://code.claude.com/docs/zh-CN/plugin-marketplaces#create-the-marketplace-file
+- plugins参考: https://code.claude.com/docs/zh-CN/plugins-reference
+- 类似项目: https://github.com/bobek-balinek/claude-lamp

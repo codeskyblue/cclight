@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# CCLight Project Specific
+.claude/state.txt
+.claude/cclight.log
+.claude/settings.json
+.claude/settings.local.json
+
+# Temporary files
+*.tmp
+temp/
+
+# OS
+.DS_Store
+Thumbs.db

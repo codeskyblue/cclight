@@ -1,0 +1,19 @@
+{
+  "name": "cclight-status-indicator",
+  "version": "1.0.0",
+  "description": "ESP32 状态指示器 - 通过 LED 灯光显示 Claude Code 的工作状态",
+  "author": {
+    "name": "codeskyblue",
+    "url": "https://github.com/codeskyblue"
+  },
+  "license": "MIT",
+  "keywords": [
+    "hardware",
+    "esp32",
+    "status-indicator",
+    "led",
+    "visual-feedback"
+  ],
+  "homepage": "https://github.com/codeskyblue/esp32-claude-status",
+  "repository": "https://github.com/codeskyblue/esp32-claude-status"
+}
