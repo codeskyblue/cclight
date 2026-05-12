@@ -75,7 +75,7 @@ claude --debug
 确保项目结构符合规范：
 
 ```
-claude-status-indicator/
+cclight/
 ├── .claude-plugin/
 │   ├── plugin.json          # 插件清单
 │   └── marketplace.json      # Marketplace 配置

@@ -11,7 +11,7 @@
       "name": "cclight-status-indicator",
       "source": {
         "source": "github",
-        "repo": "codeskyblue/claude-status-indicator"
+        "repo": "codeskyblue/cclight"
       },
       "description": "通过 ESP32 LED 灯光显示 Claude Code 的工作状态",
       "version": "1.0.0",
@@ -28,8 +28,8 @@
         "visual-feedback",
         "productivity"
       ],
-      "homepage": "https://github.com/codeskyblue/claude-status-indicator",
-      "repository": "https://github.com/codeskyblue/claude-status-indicator",
+      "homepage": "https://github.com/codeskyblue/cclight",
+      "repository": "https://github.com/codeskyblue/cclight",
       "category": "productivity"
     }
   ]

@@ -8,7 +8,7 @@
 
 ```bash
 # 1. 添加 GitHub marketplace
-/plugin marketplace add codeskyblue/claude-status-indicator
+/plugin marketplace add codeskyblue/cclight
 
 # 2. 安装插件
 /plugin install cclight-status-indicator@cclight-marketplace
