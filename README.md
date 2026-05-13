@@ -4,9 +4,10 @@
 
 # 安装方法
 
-## 从 GitHub 安装
-
 ```bash
+# 启动claude code
+claude
+
 # 1. 添加 GitHub marketplace
 /plugin marketplace add codeskyblue/cclight
 
