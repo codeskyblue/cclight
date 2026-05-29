@@ -1,11 +1,13 @@
 # CCLight Status Indicator Plugin
 
-> 🚨 通过 ESP32 LED 灯光显示 Claude Code 的工作状态
+> 通过 ESP32 LED 灯光显示 Claude Code 的工作状态
 
-# 安装方法
+## 安装方法
+
+### 方式一：通过 Claude Code 插件市场（推荐）
 
 ```bash
-# 启动claude code
+# 启动 claude code
 claude
 
 # 1. 添加 GitHub marketplace
@@ -15,7 +17,31 @@ claude
 /plugin install cclight@cclight-marketplace
 ```
 
-> 💡 **开发调试？** 查看 [DEVELOP.md](DEVELOP.md) 了解本地开发和调试方法。
+### 方式二：通过 pip / uv 安装
+
+```bash
+# 使用 pip
+pip install cclight
+
+# 使用 uv
+uv pip install cclight
+```
+
+安装后 `cclight` 命令即可使用：
+
+```bash
+# 启动 daemon（首次使用会自动启动）
+cclight state working
+cclight state idle
+cclight state input
+
+# 手动管理 daemon
+cclight daemon start
+cclight daemon stop
+cclight daemon status
+```
+
+> **开发调试？** 查看 [DEVELOP.md](DEVELOP.md) 了解本地开发和调试方法。
 
 ## 验证安装
 

@@ -221,6 +221,7 @@ __marimo__/
 .claude/state.txt
 .claude/cclight.log
 .claude/settings.json
+src/cclight/_version.py
 .claude/settings.local.json
 
 # Temporary files

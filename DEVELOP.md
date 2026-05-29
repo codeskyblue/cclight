@@ -2,6 +2,28 @@
 
 本文档介绍如何本地开发和调试 CCLight Status Indicator Plugin。
 
+## 环境准备
+
+### 使用 uv（推荐）
+
+```bash
+# 安装依赖
+uv sync
+
+# 运行 cclight
+uv run cclight daemon status
+```
+
+### 使用 pip
+
+```bash
+# 安装依赖
+pip install -e .
+
+# 运行 cclight
+cclight daemon status
+```
+
 ## 本地安装
 
 ### 1. 添加本地 marketplace
@@ -81,13 +103,19 @@ cclight/
 │   └── marketplace.json      # Marketplace 配置
 ├── hooks/                    # Hook 配置
 │   └── hooks.json
-├── skills/                   # Skills (如有)
-│   └── your-skill/
-│       └── SKILL.md
-├── agents/                   # Agents (如有)
-│   └── your-agent.md
-├── cclight.py               # 主程序
-└── DEVELOP.md               # 本文档
+├── src/
+│   ├── cclight/              # Python 包
+│   │   ├── __init__.py
+│   │   ├── cli.py
+│   │   ├── config.py
+│   │   ├── daemon.py
+│   │   ├── client.py
+│   │   └── serial_device.py
+│   └── esp32-program/        # ESP32 固件
+│       └── main.py
+├── pyproject.toml            # 包配置
+├── DEVELOP.md                # 本文档
+└── README.md
 ```
 
 ### 2. 测试 Hook
@@ -101,14 +129,11 @@ cclight/
 
 ### 3. 版本管理
 
-开发时建议：
-- **不要设置** `plugin.json` 中的 `version` 字段
-- 这样每次 git commit 都会被视为新版本
-- 方便快速迭代测试
+版本号在两个地方定义：
+- `pyproject.toml` 中的 `version` 字段
+- `src/cclight/__init__.py` 中的 `__version__`
 
-发布稳定版本时：
-- 在 `plugin.json` 中设置 `"version": "1.0.0"`
-- 遵循语义版本控制（MAJOR.MINOR.PATCH）
+发布时保持两者一致。
 
 ## 常见问题
 
@@ -140,7 +165,7 @@ cclight/
 **解决方案**：
 1. 检查 `hooks/hooks.json` 语法
 2. 确认事件名称大小写正确（如 `PostToolUse` 不是 `postToolUse`）
-3. 检查 hook 命令是否有执行权限：`chmod +x scripts/your-script.sh`
+3. 确认 `cclight` 命令已安装且在 PATH 中
 
 ## 发布流程
 
@@ -150,7 +175,19 @@ cclight/
 /plugin validate ./
 ```
 
-### 2. 提交代码
+### 2. 构建包
+
+```bash
+uv build
+```
+
+### 3. 发布到 PyPI
+
+```bash
+uv publish
+```
+
+### 4. 提交代码
 
 ```bash
 git add .
@@ -158,22 +195,12 @@ git commit -m "Release v1.0.0"
 git push
 ```
 
-### 3. 打标签（可选）
-
-```bash
-claude plugin tag --push
-```
-
-或手动打标签：
+### 5. 打标签（可选）
 
 ```bash
 git tag v1.0.0
 git push --tags
 ```
-
-### 4. 更新文档
-
-确保 README.md 中的安装方法正确。
 
 ## 相关资源
 

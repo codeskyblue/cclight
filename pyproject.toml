@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cclight"
+dynamic = ["version"]
+description = "ESP32 LED status indicator for Claude Code"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    { name = "codeskyblue" },
+]
+dependencies = [
+    "pyserial>=3.5",
+    "python-daemon>=3.1.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/codeskyblue/cclight"
+Repository = "https://github.com/codeskyblue/cclight"
+
+[project.scripts]
+cclight = "cclight.cli:main"
+
+[tool.hatch.version]
+source = "vcs"
+raw-options.version_scheme = "guess-next-dev"
+raw-options.tag_regex = "^(?P<version>v?\\d+\\.\\d+\\.\\d+)$"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/cclight/_version.py"
