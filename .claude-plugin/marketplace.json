@@ -14,7 +14,7 @@
         "repo": "codeskyblue/cclight"
       },
       "description": "通过 ESP32 LED 灯光显示 Claude Code 的工作状态",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "codeskyblue",
         "url": "https://github.com/codeskyblue"
