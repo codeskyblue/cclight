@@ -5,8 +5,9 @@
 ## 准备硬件
 
 - 硬件代码在 src/esp32-program中可以找到。找台ESP32-C3的板子，刷micropython，然后将main.py刷到板子上。 LED灯负极接GND，正极接Pin(3)
+- 电脑通过USB先直连ESP32-C3的板子
 
-## 安装方法
+## 软件安装
 
 ### 1: 安装控制程序
 
