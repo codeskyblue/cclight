@@ -2,6 +2,10 @@
 
 > 通过 ESP32 LED 灯光显示 Claude Code 的工作状态
 
+## 准备硬件
+
+- 硬件代码在 src/esp32-program中可以找到。找台ESP32-C3的板子，刷micropython，然后将main.py刷到板子上。 LED灯负极接GND，正极接Pin(3)
+
 ## 安装方法
 
 ### 1: 安装控制程序
@@ -26,6 +30,9 @@ claude
 
 # 3. 重新加载插件
 /reload-plugins
+
+# 4. 检查
+/plugin list
 ```
 
 ## 测试
@@ -45,16 +52,6 @@ cclight daemon status
 ```
 
 > **开发调试？** 查看 [DEVELOP.md](DEVELOP.md) 了解本地开发和调试方法。
-
-## 验证安装
-
-安装成功后，在 Claude Code 中运行：
-
-```bash
-/plugin list
-```
-
-应该能看到 `cclight` 已启用。
 
 # 参考文档
 
