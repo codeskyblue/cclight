@@ -4,7 +4,15 @@
 
 ## 安装方法
 
-### 方式一：通过 Claude Code 插件市场（推荐）
+### 1: 安装控制程序
+
+```bash
+# 使用 pip 或 pipx
+pip install cclight
+# pipx install cclight
+```
+
+### 2：Claude Code 插件市场
 
 ```bash
 # 启动 claude code
@@ -15,17 +23,12 @@ claude
 
 # 2. 安装插件
 /plugin install cclight@cclight-marketplace
+
+# 3. 重新加载插件
+/reload-plugins
 ```
 
-### 方式二：通过 pip / uv 安装
-
-```bash
-# 使用 pip
-pip install cclight
-
-# 使用 uv
-uv pip install cclight
-```
+## 测试
 
 安装后 `cclight` 命令即可使用：
 
