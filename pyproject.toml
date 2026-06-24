@@ -31,3 +31,9 @@ raw-options.tag_regex = "^(?P<version>v?\\d+\\.\\d+\\.\\d+)$"
 
 [tool.hatch.build.hooks.vcs]
 version-file = "src/cclight/_version.py"
+
+[dependency-groups]
+dev = [
+    "esptool>=4.11.0",
+    "mpremote>=1.25.0",
+]

@@ -1,15 +1,23 @@
 # micropython
-from machine import Pin, PWM
+from machine import Pin
 import sys
 import select
 import time
-import math
 
 # ===== GPIO 定义 =====
-led = PWM(Pin(3), freq=1000)
-led.duty(0)
-BREATH_MAX = 50  # 30% of 1023
-BREATH_MIN = 10  # 10% of 1023
+led = Pin(8, Pin.OUT, value=1)   # 低电平触发，初始高电平=灭
+led2 = Pin(3, Pin.OUT, value=1)  # 低电平触发，初始高电平=灭
+
+def set_leds(on: bool):
+    """同时设置两个 LED：True=亮，False=灭"""
+    led.value(0 if on else 1)
+    led2.value(0 if on else 1)
+
+def toggle_leds():
+    """同时反转两个 LED 的状态"""
+    v = led.value()
+    led.value(not v)
+    led2.value(not v)
 
 # ===== 状态 =====
 STATE_IDLE = 0    # 空闲，灭灯
@@ -26,7 +34,7 @@ poll.register(sys.stdin, select.POLLIN)
 def set_idle():
     global state
     state = STATE_IDLE
-    led.duty(0)
+    set_leds(False)  # 灭
 
 def set_working():
     global state
@@ -39,7 +47,6 @@ def set_input():
 # ===== 主循环 =====
 last_blink = 0
 blink_interval = 200  # ms
-breath_step = 0.0
 
 while True:
     # 1. 检查串口输入（USB CDC）
@@ -58,13 +65,11 @@ while True:
 
     # 2. 状态驱动
     if state == STATE_WORKING:
-        breath_step += 0.1
-        duty = int(BREATH_MIN + (math.sin(breath_step) + 1) / 2 * (BREATH_MAX - BREATH_MIN))
-        led.duty(duty)
+        set_leds(True)  # 亮
     elif state == STATE_INPUT:
         now = time.ticks_ms()
         if time.ticks_diff(now, last_blink) > blink_interval:
-            led.duty(BREATH_MAX if led.duty() == 0 else 0)
+            toggle_leds()
             last_blink = now
 
     time.sleep_ms(10)
