@@ -1,24 +1,21 @@
 """Client：写入状态文件，自动启动 daemon"""
 
 import os
-import sys
-import time
 
 from cclight.config import CONFIG_DIR, PID_FILE, STATE_FILE
 from cclight.daemon import daemon_start
+from cclight.pidfile import cleanup_if_stale, is_running, read_pid
 
 
 def is_daemon_running():
     """检查 daemon 是否在运行"""
-    if not os.path.exists(PID_FILE):
+    pid, err = read_pid(PID_FILE)
+    if pid is None:
         return False
-    try:
-        with open(PID_FILE, "r") as f:
-            pid = int(f.read().strip())
-        os.kill(pid, 0)
-        return True
-    except (ValueError, OSError):
+    if not is_running(pid):
+        cleanup_if_stale(PID_FILE)
         return False
+    return True
 
 
 def client_run(state, port=None):
