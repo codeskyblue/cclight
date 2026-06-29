@@ -4,9 +4,39 @@ import argparse
 import logging
 import sys
 
-from cclight.config import VALID_STATES
+from cclight.config import (
+    CONFIG_DIR,
+    LOG_FILE,
+    PID_FILE,
+    STATE_DIR,
+    STATE_FILE,
+    VALID_STATES,
+)
 from cclight.client import client_run
 from cclight.daemon import daemon_start, daemon_status, daemon_stop
+from cclight.pidfile import is_running, read_pid
+
+
+def show_info():
+    """显示文件路径和 daemon 运行信息"""
+    print("路径:")
+    print("  配置目录:  {}".format(CONFIG_DIR))
+    print("  状态目录:  {}".format(STATE_DIR))
+    print("  状态文件:  {}".format(STATE_FILE))
+    print("  PID 文件:  {}".format(PID_FILE))
+    print("  日志文件:  {}".format(LOG_FILE))
+    print()
+
+    pid, err = read_pid(PID_FILE)
+    if pid and is_running(pid):
+        print("Daemon: 运行中 (pid={})".format(pid))
+        try:
+            with open(STATE_FILE) as f:
+                print("当前状态: {}".format(f.read().strip()))
+        except FileNotFoundError:
+            pass
+    else:
+        print("Daemon: 未运行")
 
 
 def main():
@@ -28,6 +58,9 @@ def main():
 
     daemon_sub.add_parser("stop", help="停止 daemon")
     daemon_sub.add_parser("status", help="查看 daemon 状态")
+
+    # cclight info
+    sub.add_parser("info", help="显示文件路径和运行信息")
 
     # 兼容旧用法：cclight idle / working / input
     parser.add_argument(
@@ -59,6 +92,8 @@ def main():
         else:
             daemon_parser.print_help()
             sys.exit(1)
+    elif args.command == "info":
+        show_info()
     elif args.legacy_state:
         client_run(args.legacy_state, port=args.port)
     else:

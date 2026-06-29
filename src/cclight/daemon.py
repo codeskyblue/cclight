@@ -17,6 +17,7 @@ from cclight.config import (
     STATE_FILE,
     VALID_STATES,
 )
+from cclight.pidfile import cleanup_if_stale, is_running, read_pid
 from cclight.serial_device import find_esp32, send_serial
 
 
@@ -105,6 +106,10 @@ def daemon_start(port=None, fg=False):
             logger.info("daemon 停止")
         return
 
+    if not cleanup_if_stale(PID_FILE):
+        print("daemon 已在运行")
+        raise SystemExit(1)
+
     import daemon
     import daemon.pidfile
 
@@ -132,66 +137,53 @@ def daemon_start(port=None, fg=False):
 
 def daemon_stop():
     """停止 daemon 进程"""
-    if not os.path.exists(PID_FILE):
-        print("daemon 未运行（PID 文件不存在）")
+    pid, err = read_pid(PID_FILE)
+    if err:
+        print("daemon 未运行（{}）".format(err))
         return False
 
-    try:
-        with open(PID_FILE, "r") as f:
-            pid = int(f.read().strip())
-    except (ValueError, OSError) as e:
-        print("读取 PID 文件失败: {}".format(e))
+    if not is_running(pid):
+        cleanup_if_stale(PID_FILE)
+        print("daemon 未运行（进程不存在），已清理 PID 文件")
         return False
 
     try:
         os.kill(pid, signal.SIGTERM)
-        for _ in range(50):
-            try:
-                os.kill(pid, 0)
-                time.sleep(0.1)
-            except OSError:
-                break
-        else:
-            print("警告: daemon (pid={}) 未在 5s 内退出".format(pid))
-            return False
-        print("daemon 已停止 (pid={})".format(pid))
-        return True
     except OSError:
-        try:
-            os.remove(PID_FILE)
-        except OSError:
-            pass
-        print("daemon 未运行（进程不存在），已清理 PID 文件")
+        print("无法向 daemon (pid={}) 发送信号".format(pid))
         return False
+
+    for _ in range(50):
+        if not is_running(pid):
+            break
+        time.sleep(0.1)
+    else:
+        print("警告: daemon (pid={}) 未在 5s 内退出".format(pid))
+        return False
+    print("daemon 已停止 (pid={})".format(pid))
+    return True
 
 
 def daemon_status():
     """查看 daemon 状态"""
-    if not os.path.exists(PID_FILE):
-        print("daemon 未运行")
+    pid, err = read_pid(PID_FILE)
+    if err:
+        if err == "PID 文件不存在":
+            print("daemon 未运行")
+        else:
+            print("daemon 未运行（PID 文件无效）")
         return False
 
-    try:
-        with open(PID_FILE, "r") as f:
-            pid = int(f.read().strip())
-    except (ValueError, OSError):
-        print("daemon 未运行（PID 文件无效）")
-        return False
-
-    try:
-        os.kill(pid, 0)
-        print("daemon 运行中 (pid={})".format(pid))
-        try:
-            with open(STATE_FILE, "r") as f:
-                state = f.read().strip()
-            print("当前状态: {}".format(state))
-        except FileNotFoundError:
-            print("当前状态: (state.txt 不存在)")
-        return True
-    except OSError:
+    if not is_running(pid):
+        cleanup_if_stale(PID_FILE)
         print("daemon 未运行（pid={} 进程不存在）".format(pid))
-        try:
-            os.remove(PID_FILE)
-        except OSError:
-            pass
         return False
+
+    print("daemon 运行中 (pid={})".format(pid))
+    try:
+        with open(STATE_FILE, "r") as f:
+            state = f.read().strip()
+        print("当前状态: {}".format(state))
+    except FileNotFoundError:
+        print("当前状态: (state.txt 不存在)")
+    return True
