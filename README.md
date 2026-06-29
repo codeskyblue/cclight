@@ -23,13 +23,16 @@ pip install cclight
 # 启动 claude code
 claude
 
-# 1. 添加 GitHub marketplace
+# 添加 marketplace & 安装插件
 /plugin marketplace add codeskyblue/cclight
-
-# 2. 安装插件
 /plugin install cclight@cclight-marketplace
 
-# 3. 重新加载插件
+# 国内
+/plugin marketplace add git@gitee.com:shxsun/cclight-cn.git
+/plugin install cclight@cclight-marketplace
+```
+
+# 重新加载插件
 /reload-plugins
 
 # 4. 检查
