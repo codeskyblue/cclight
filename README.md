@@ -9,34 +9,24 @@
 
 ## 软件安装
 
-### 1: 安装控制程序
+### 1: 安装LED控制程序
 
 ```bash
-# 使用 pip 或 pipx
+# 使用 pip 或 pipx, 需要Python版本大于3.8
 pip install cclight
 # pipx install cclight
 ```
 
-### 2：Claude Code 插件市场
+### 2：安装插件到Claude Code
 
 ```bash
-# 启动 claude code
-claude
-
-# 添加 marketplace & 安装插件
-/plugin marketplace add codeskyblue/cclight
-/plugin install cclight@cclight-marketplace
-
 # 国内
-/plugin marketplace add git@gitee.com:shxsun/cclight-cn.git
-/plugin install cclight@cclight-marketplace
-```
+claude plugin marketplace add git@gitee.com:shxsun/cclight.git
+claude plugin install cclight@cclight-marketplace
 
-# 重新加载插件
-/reload-plugins
-
-# 4. 检查
-/plugin list
+# 国外
+claude plugin marketplace add codeskyblue/cclight
+claude plugin install cclight@cclight-marketplace
 ```
 
 ## 测试

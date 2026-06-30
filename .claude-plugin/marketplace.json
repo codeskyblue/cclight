@@ -9,10 +9,7 @@
   "plugins": [
     {
       "name": "cclight",
-      "source": {
-        "source": "github",
-        "repo": "codeskyblue/cclight"
-      },
+      "source": "./plugins/cclight",
       "description": "通过 ESP32 LED 灯光显示 Claude Code 的工作状态",
       "version": "1.2.0",
       "author": {
