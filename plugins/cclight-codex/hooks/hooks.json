@@ -71,6 +71,55 @@
         ]
       }
     ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt|elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cclight state input"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cclight state idle"
+          }
+        ]
+      },
+      {
+        "matcher": "prompt_success|prompt_submit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cclight state working"
+          }
+        ]
+      }
+    ],
+    "ElicitationResult": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cclight state working"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cclight state idle"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [

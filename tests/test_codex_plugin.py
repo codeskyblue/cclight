@@ -71,14 +71,23 @@ class TestCodexPlugin:
         hooks_file = json.loads((CODEX_PLUGIN_DIR / "hooks" / "hooks.json").read_text())
         hooks = hooks_file["hooks"]
         valid_states = {"idle", "working", "input"}
+        expected_prefix = 'cclight state '
         for event_name, matcher_groups in hooks.items():
             for group in matcher_groups:
                 for hook in group["hooks"]:
                     assert hook["type"] == "command", f"hook type must be 'command', got {hook['type']}"
                     cmd = hook["command"]
-                    assert cmd.startswith("cclight state "), f"Unexpected command: {cmd}"
+                    assert cmd.startswith(expected_prefix), f"Unexpected command: {cmd}"
                     state = cmd.split()[-1]
                     assert state in valid_states, f"Invalid state in command: {state}"
+
+    def test_hook_commands_use_direct_cclight(self):
+        hooks_file = json.loads((CODEX_PLUGIN_DIR / "hooks" / "hooks.json").read_text())
+        hooks = hooks_file["hooks"]
+        for matcher_groups in hooks.values():
+            for group in matcher_groups:
+                for hook in group["hooks"]:
+                    assert hook["command"].startswith("cclight state ")
 
     def test_session_start_matchers(self):
         hooks_file = json.loads((CODEX_PLUGIN_DIR / "hooks" / "hooks.json").read_text())

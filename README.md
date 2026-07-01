@@ -32,7 +32,11 @@ claude plugin install cclight@cclight-marketplace
 ### 3：安装插件到 Codex CLI
 
 ```bash
-# 从 GitHub marketplace 安装（推荐）
+# 国内
+codex plugin marketplace add git@gitee.com:shxsun/cclight.git
+codex plugin add cclight-codex@cclight-marketplace
+
+# 国外
 codex plugin marketplace add codeskyblue/cclight
 codex plugin add cclight-codex@cclight-marketplace
 
