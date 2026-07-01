@@ -1,6 +1,6 @@
 # CCLight Status Indicator Plugin
 
-> 通过 ESP32 LED 灯光显示 Claude Code 的工作状态
+> 通过 ESP32 LED 灯光显示 Claude Code / Codex CLI 的工作状态
 
 ## 准备硬件
 
@@ -28,6 +28,20 @@ claude plugin install cclight@cclight-marketplace
 claude plugin marketplace add codeskyblue/cclight
 claude plugin install cclight@cclight-marketplace
 ```
+
+### 3：安装插件到 Codex CLI
+
+```bash
+# 从 GitHub marketplace 安装（推荐）
+codex plugin marketplace add codeskyblue/cclight
+codex plugin add cclight-codex@cclight-marketplace
+
+# 或者从本地仓库安装
+codex plugin marketplace add .
+codex plugin add cclight-codex@cclight-marketplace
+```
+
+Codex 这里不能直接用 `codex plugin add ./plugins/...` 安装本地目录；要先把仓库作为 marketplace 加进去，再按 `插件名@marketplace名` 安装。
 
 ## 测试
 

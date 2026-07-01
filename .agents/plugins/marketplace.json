@@ -1,0 +1,20 @@
+{
+  "name": "cclight-marketplace",
+  "interface": {
+    "displayName": "CCLight Marketplace"
+  },
+  "plugins": [
+    {
+      "name": "cclight-codex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cclight-codex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

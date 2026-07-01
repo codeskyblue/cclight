@@ -1,0 +1,34 @@
+{
+  "name": "cclight-codex",
+  "version": "1.2.0",
+  "description": "ESP32 status indicator plugin for Codex CLI.",
+  "author": {
+    "name": "codeskyblue",
+    "url": "https://github.com/codeskyblue"
+  },
+  "homepage": "https://github.com/codeskyblue/cclight",
+  "repository": "https://github.com/codeskyblue/cclight",
+  "license": "MIT",
+  "keywords": [
+    "hardware",
+    "esp32",
+    "status-indicator",
+    "led",
+    "visual-feedback",
+    "codex"
+  ],
+  "interface": {
+    "displayName": "CCLight for Codex",
+    "shortDescription": "Show Codex activity on an ESP32 LED.",
+    "longDescription": "CCLight updates an ESP32 LED so Codex sessions show idle, working, and input-needed states in hardware.",
+    "developerName": "codeskyblue",
+    "category": "Productivity",
+    "capabilities": [
+      "Hardware",
+      "Automation"
+    ],
+    "defaultPrompt": [
+      "Use CCLight while I work in Codex."
+    ]
+  }
+}
